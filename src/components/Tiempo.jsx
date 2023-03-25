@@ -1,5 +1,8 @@
 import { useState, useRef } from "react";
 import Button from "./Button";
+import { VscDebugStart as Start} from "react-icons/vsc";
+import { AiOutlinePause as Pause } from "react-icons/ai";
+import { MdRestartAlt as Restart } from "react-icons/md";
 
 export default function Tiempo({active, setActive }) {
   const [time, setTime] = useState({ segundos: 0, minutos: 0, horas: 0 }); 
@@ -53,21 +56,22 @@ export default function Tiempo({active, setActive }) {
     .padStart(2, "0")}:${time.segundos.toString().padStart(2, "0")}`;
 
   return (
-    <div className="text-white mt-14">
-      <div
-        className="
-    text-black border bg-slate-300 
-      flex justify-center font-semibold
-      "
-      >
-        <h3>{formato}</h3>
+    <div className="text-white">
+      <div className="text-white mt-10 w-60 mx-auto tracking-wider">
+        <div className="bg-gray-800 rounded-lg shadow-xl p-4">
+          <h3 className="text-3xl font-semibold text-center">{formato}</h3>
+        </div>
       </div>
 
-      <Button iniciar={iniciar} textContent="Iniciar" />
+      <Button iniciar={iniciar} textContent="iniciar" icon={<Start />} />
 
-      <Button detener={detener} textContent="Detener" />
+      <Button detener={detener} textContent="detener" icon={<Pause />} />
 
-      <Button reiniciar={reiniciar} textContent="Reiniciar" />
+      <Button
+        reiniciar={reiniciar}
+        textContent="reiniciar"
+        icon={<Restart />}
+      />
     </div>
   );
 };

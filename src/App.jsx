@@ -10,9 +10,12 @@ function App() {
     <div className="App">
       <div
         className="
-      flex justify-center items-center flex-col border 
-      bg-gradient-to-br from-black to-gray-900
-      w-10/12 h-auto mx-auto mt-40 
+        flex justify-center items-center flex-col
+        bg-gradient-to-br from-black to-gray-900
+        w-full h-auto mx-auto xl:rounded-lg xl:mt-5
+        sm:w-full md:w-full lg:w-full xl:w-4/12
+        sm:p-4 md:p-6 lg:p-8 xl:p-10
+        
       "
       >
         <Titulo />
@@ -20,6 +23,7 @@ function App() {
         <Tiempo active={active} setActive={setActive} />
 
         <Dinero active={active} />
+
       </div>
     </div>
   );

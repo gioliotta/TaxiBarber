@@ -11,11 +11,10 @@ export default function Dinero({ active }) {
       }, 5000);
     } else {
       clearInterval(intervalId.current);
-      setPrecio(precio);
       if (active === null) {
         setPrecio(600);
-      }
-    }
+      };
+    };
 
     return () => {
       clearInterval(intervalId.current);
@@ -23,9 +22,8 @@ export default function Dinero({ active }) {
   }, [active]);
 
   return (
-    <div className="w-28 h-24 border bg-slate-400 flex justify-center items-center m-8">
-      <h2 className="text-black text-3xl">${precio}</h2>
+    <div class="w-28 h-24 border-2 rounded-lg border-yellow-500 bg-gray-800 flex justify-center items-center m-8">
+      <h2 class="text-white text-3xl font-bold">${precio}</h2>
     </div>
   );
 };
-
