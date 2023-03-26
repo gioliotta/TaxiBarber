@@ -7,7 +7,7 @@ export default function Dinero({ active }) {
   useEffect(() => {
     if (active) {
       intervalId.current = setInterval(() => {
-        setPrecio((precioActual) => precioActual + 20);
+        setPrecio(precioActual => precioActual + 20);
       }, 5000);
     } else {
       clearInterval(intervalId.current);
@@ -22,8 +22,8 @@ export default function Dinero({ active }) {
   }, [active]);
 
   return (
-    <div class="w-28 h-24 border-2 rounded-lg border-yellow-500 bg-gray-800 flex justify-center items-center m-8">
-      <h2 class="text-white text-3xl font-bold">${precio}</h2>
+    <div className="w-28 h-24 border-2 rounded-lg border-yellow-500 bg-gray-800 flex justify-center items-center m-8">
+      <h2 className="text-white text-3xl font-bold">${precio}</h2>
     </div>
   );
 };
