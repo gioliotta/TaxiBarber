@@ -5,4 +5,4 @@ export default function Titulo() {
       <span className="text-yellow-400 ">Barber</span>
     </h1>
   );
-};
+}

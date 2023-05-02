@@ -1,6 +1,5 @@
 export default function Button({
   iniciar,
-  detener,
   reiniciar,
   textContent,
   icon,
@@ -9,8 +8,6 @@ export default function Button({
   function handleClick() {
     if (textContent == "iniciar") {
       return iniciar();
-    } else if (textContent == "detener") {
-      return detener();
     } else if (textContent == "reiniciar") {
       return reiniciar();
     } else {
@@ -18,7 +15,6 @@ export default function Button({
     }
   }
 
-  //! No funciona.
   const aplicar = () => {
     if (confirm("¿Estás seguro de aplicar estos cambios?")) {
       setValidarContraseña(false);
@@ -49,4 +45,4 @@ export default function Button({
       {icon}
     </button>
   );
-};
+}

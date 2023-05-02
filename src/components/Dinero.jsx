@@ -1,29 +1,46 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
-export default function Dinero({ active }) {
-  const [precio, setPrecio] = useState(600);
+export default function Dinero({
+  active,
+  precioMinimo,
+  setPrecioMinimo,
+  precioMaximo,
+  tiempo,
+  incrementarPrecio,
+}) {
   const intervalId = useRef(null);
+
+  const PRECIO_MAXIMO_ALCANZADO = () => {
+    clearInterval(intervalId.current);
+    setPrecioMinimo(Number(precioMinimo));
+  };
 
   useEffect(() => {
     if (active) {
       intervalId.current = setInterval(() => {
-        setPrecio(precioActual => precioActual + 20);
-      }, 5000);
+        setPrecioMinimo(
+          precioActual => Number(precioActual) + Number(incrementarPrecio),
+        );
+      }, tiempo * 1000);
     } else {
       clearInterval(intervalId.current);
       if (active === null) {
-        setPrecio(600);
-      };
-    };
+        setPrecioMinimo(precioMinimo);
+      }
+    }
 
-    return () => {
-      clearInterval(intervalId.current);
-    };
+    return () => clearInterval(intervalId.current);
   }, [active]);
+
+  useEffect(() => {
+    if (precioMinimo >= precioMaximo) {
+      return PRECIO_MAXIMO_ALCANZADO();
+    }
+  }, [precioMinimo]);
 
   return (
     <div className="w-28 h-24 border-2 rounded-lg border-yellow-500 bg-gray-800 flex justify-center items-center m-8">
-      <h2 className="text-white text-3xl font-bold">${precio}</h2>
+      <h2 className="text-white text-3xl font-bold">${precioMinimo}</h2>
     </div>
   );
-};
+}

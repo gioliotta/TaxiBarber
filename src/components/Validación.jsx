@@ -2,7 +2,7 @@ import { useState } from "react";
 import { AiOutlineArrowLeft as Atras } from "react-icons/ai";
 
 export default function Validacion({ setValidarContraseña }) {
-  const [contraseña, setContraseña] = useState("zapato");
+  const [contraseña, setContraseña] = useState("12345");
   const [esCorrecta, setEsCorrecta] = useState(null);
 
   function handleChange(e) {
@@ -33,7 +33,7 @@ export default function Validacion({ setValidarContraseña }) {
    mt-5 p-10"
     >
       <form
-        onSubmit={(event) => event.preventDefault()}
+        onSubmit={event => event.preventDefault()}
         className="flex flex-col items-center"
       >
         <h1 className="text-white">CONTRASEÑA</h1>
@@ -43,6 +43,7 @@ export default function Validacion({ setValidarContraseña }) {
           type="password"
           placeholder="Ingrese la contraseña"
           className="mt-4 px-4 py-2 bg-gray-800 text-white rounded-lg focus:outline-none  focus:bg-gray-700"
+          autoFocus
         />
 
         <button
@@ -61,4 +62,4 @@ export default function Validacion({ setValidarContraseña }) {
       </button>
     </div>
   );
-};
+}
