@@ -2,7 +2,10 @@ import Button from "./Button";
 import InputForm from "./InputForm";
 
 export default function PanelControl({
+  contraseña,
+  setContraseña,
   setValidarContraseña,
+  setContraseñaCorrecta,
   precioMinimo,
   setPrecioMinimo,
   precioMaximo,
@@ -12,6 +15,16 @@ export default function PanelControl({
   incrementarPrecio,
   setIncrementarPrecio,
 }) {
+  function nuevaContraseña(contraseñaActual) {
+    if (prompt("Ingrese la contraseña actual") === contraseñaActual) {
+      let nueva = prompt("Ingrese su nueva contraseña");
+      setContraseña(nueva);
+      alert(`Su nueva contraseña es: ${nueva}`);
+    } else {
+      return alert("Contaseña Incorrecta");
+    }
+  }
+
   return (
     <div
       className="flex justify-center items-center flex-col
@@ -51,10 +64,25 @@ export default function PanelControl({
         />
       </form>
 
-      <div className="w-full flex justify-end gap-3 mt-14">
-        <Button icon="Cancelar" setValidarContraseña={setValidarContraseña} />
+      <h3
+        onClick={() => nuevaContraseña(contraseña)}
+        className="text-start mt-5 bg-slate-500 rounded p-1 text-white font-bold cursor-pointer"
+      >
+        Cambiar contraseña
+      </h3>
 
-        <Button icon="Aplicar" setValidarContraseña={setValidarContraseña} />
+      <div className="w-full flex justify-end gap-3 mt-14">
+        {/* <Button
+          icon="Cancelar"
+          setValidarContraseña={setValidarContraseña}
+          setContraseñaCorrecta={setContraseñaCorrecta}
+        /> */}
+
+        <Button
+          icon="Aplicar"
+          setValidarContraseña={setValidarContraseña}
+          setContraseñaCorrecta={setContraseñaCorrecta}
+        />
       </div>
     </div>
   );

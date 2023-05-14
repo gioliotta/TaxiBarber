@@ -1,7 +1,6 @@
 export default function InputForm({
   htmlFor,
   textContent,
-  setPrecio,
   precioMinimo,
   setPrecioMinimo,
   precioMaximo,

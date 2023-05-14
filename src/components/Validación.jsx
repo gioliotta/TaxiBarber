@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { AiOutlineArrowLeft as Atras } from "react-icons/ai";
 
-export default function Validacion({ setValidarContraseña }) {
-  const [contraseña, setContraseña] = useState("12345");
-  const [esCorrecta, setEsCorrecta] = useState(null);
+export default function Validacion({
+  contraseña,
+  setValidarContraseña,
+  setContraseñaCorrecta,
+}) {
+  const [esCorrecta, setEsCorrecta] = useState(false);
 
   function handleChange(e) {
     let value = e.target.value;
@@ -16,7 +19,8 @@ export default function Validacion({ setValidarContraseña }) {
 
   function comprobacion() {
     if (esCorrecta) {
-      return setValidarContraseña(null);
+      setValidarContraseña(false);
+      return setContraseñaCorrecta(true);
     } else if (esCorrecta === false) {
       return alert("Contraseña Incorrecta");
     } else {
@@ -41,7 +45,7 @@ export default function Validacion({ setValidarContraseña }) {
         <input
           onChange={handleChange}
           type="password"
-          placeholder="Ingrese la contraseña"
+          placeholder="Por defecto: 12345"
           className="mt-4 px-4 py-2 bg-gray-800 text-white rounded-lg focus:outline-none  focus:bg-gray-700"
           autoFocus
         />

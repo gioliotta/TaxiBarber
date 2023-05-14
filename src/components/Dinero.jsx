@@ -39,7 +39,7 @@ export default function Dinero({
   }, [precioMinimo]);
 
   return (
-    <div className="w-28 h-24 border-2 rounded-lg border-yellow-500 bg-gray-800 flex justify-center items-center m-8">
+    <div className="max-w-5rem p-3 h-24 border-2 rounded-lg border-yellow-500 bg-gray-800 flex justify-center items-center m-8">
       <h2 className="text-white text-3xl font-bold">${precioMinimo}</h2>
     </div>
   );

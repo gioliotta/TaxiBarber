@@ -13,13 +13,24 @@ function App() {
   const [precioMaximo, setPrecioMaximo] = useState(1300);
   const [tiempo, setTiempo] = useState(5);
   const [incrementarPrecio, setIncrementarPrecio] = useState(50);
+  const [contraseñaCorrecta, setContraseñaCorrecta] = useState(false);
+  const [contraseña, setContraseña] = useState("12345");
 
   return (
     <div className="App">
-      {validarContraseña ? (
-        <Validacion setValidarContraseña={setValidarContraseña} />
-      ) : validarContraseña === null ? (
+      {validarContraseña && (
+        <Validacion
+          contraseña={contraseña}
+          setValidarContraseña={setValidarContraseña}
+          setContraseñaCorrecta={setContraseñaCorrecta}
+        />
+      )}
+
+      {contraseñaCorrecta && (
         <PanelControl
+          contraseña={contraseña}
+          setContraseña={setContraseña}
+          setContraseñaCorrecta={setContraseñaCorrecta}
           setValidarContraseña={setValidarContraseña}
           precioMinimo={precioMinimo}
           setPrecioMinimo={setPrecioMinimo}
@@ -30,7 +41,9 @@ function App() {
           incrementarPrecio={incrementarPrecio}
           setIncrementarPrecio={setIncrementarPrecio}
         />
-      ) : (
+      )}
+
+      {!validarContraseña && !contraseñaCorrecta && (
         <div
           className="
         flex justify-center items-center flex-col

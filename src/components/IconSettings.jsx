@@ -2,7 +2,7 @@ import { SlSettings as ConfiguracionIcono } from "react-icons/sl";
 
 export default function IconSettings({ setValidarContraseña }) {
   return (
-    <div className="text-white w-full flex justify-end">
+    <div className="text-white w-full flex justify-end m-2">
       <button onClick={() => setValidarContraseña(true)}>
         <ConfiguracionIcono className="text-3xl cursor-pointer hover:text-yellow-500" />
       </button>
