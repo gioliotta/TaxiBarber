@@ -1,4 +1,5 @@
 export default function Button({
+  saveData,
   iniciar,
   reiniciar,
   textContent,
@@ -17,7 +18,8 @@ export default function Button({
   const aplicar = () => {
     if (confirm("¿Estás seguro de aplicar estos cambios?")) {
       setContraseñaCorrecta(false);
-      return setValidarContraseña(false);
+      setValidarContraseña(false);
+      return saveData();
     }
   };
 

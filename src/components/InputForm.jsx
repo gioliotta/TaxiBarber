@@ -24,14 +24,17 @@ export default function InputForm({
 
   const ACTUALIZAR_INPUTS = e => {
     const valorInput = e.target.value;
-    if (htmlFor === "min") {
-      setPrecioMinimo(valorInput);
-    } else if (htmlFor === "max") {
-      setPrecioMaximo(valorInput);
-    } else if (htmlFor === "time") {
-      setTiempo(valorInput);
-    } else if (htmlFor === "price") {
-      setIncrementarPrecio(valorInput);
+
+    if (Number(valorInput)) {
+      if (htmlFor === "min") {
+        setPrecioMinimo(valorInput);
+      } else if (htmlFor === "max") {
+        setPrecioMaximo(valorInput);
+      } else if (htmlFor === "time") {
+        setTiempo(valorInput);
+      } else if (htmlFor === "price") {
+        setIncrementarPrecio(valorInput);
+      }
     }
   };
   return (
@@ -47,6 +50,7 @@ export default function InputForm({
         onChange={ACTUALIZAR_INPUTS}
         id={htmlFor}
         type="number"
+        required
         className="border border-gray-300 rounded-lg ml-2 py-2 px-3 focus:outline-none  text-gray-800 w-20 h-8 appearance-none"
       />
     </div>

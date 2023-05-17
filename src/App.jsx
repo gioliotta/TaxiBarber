@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Titulo from "./components/Titulo";
 import Tiempo from "./components/Tiempo";
 import Dinero from "./components/Dinero";
@@ -16,6 +16,34 @@ function App() {
   const [contraseñaCorrecta, setContraseñaCorrecta] = useState(false);
   const [contraseña, setContraseña] = useState("12345");
 
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  function saveData() {
+    const data = {
+      contraseña,
+      precioMinimo,
+      precioMaximo,
+      tiempo,
+      incrementarPrecio,
+    };
+
+    localStorage.setItem("data", JSON.stringify(data));
+  }
+
+  function loadData() {
+    const data = localStorage.getItem("data");
+    if (data) {
+      const parsedData = JSON.parse(data);
+      setPrecioMinimo(parsedData?.precioMinimo);
+      setPrecioMaximo(parsedData?.precioMaximo);
+      setTiempo(parsedData?.tiempo);
+      setIncrementarPrecio(parsedData?.incrementarPrecio);
+      setContraseña(parsedData?.contraseña);
+    }
+  }
+
   return (
     <div className="App">
       {validarContraseña && (
@@ -28,6 +56,7 @@ function App() {
 
       {contraseñaCorrecta && (
         <PanelControl
+          saveData={saveData}
           contraseña={contraseña}
           setContraseña={setContraseña}
           setContraseñaCorrecta={setContraseñaCorrecta}
@@ -46,10 +75,10 @@ function App() {
       {!validarContraseña && !contraseñaCorrecta && (
         <div
           className="
-        flex justify-center items-center flex-col
+          flex justify-center items-center flex-col
         bg-gradient-to-br from-black to-gray-900
         w-full h-auto mx-auto xl:rounded-lg xl:mt-5
-        sm:w-full md:w-full lg:w-full xl:w-4/12
+        sm:w-full md:w-full lg:w-full xl:w-6/12
         sm:p-4 md:p-6 lg:p-8 xl:p-10
       "
         >

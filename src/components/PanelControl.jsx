@@ -1,7 +1,9 @@
+import { useEffect } from "react";
 import Button from "./Button";
 import InputForm from "./InputForm";
 
 export default function PanelControl({
+  saveData,
   contraseña,
   setContraseña,
   setValidarContraseña,
@@ -15,13 +17,17 @@ export default function PanelControl({
   incrementarPrecio,
   setIncrementarPrecio,
 }) {
+  useEffect(() => {
+    saveData();
+  }, [contraseña]);
+
   function nuevaContraseña(contraseñaActual) {
     if (prompt("Ingrese la contraseña actual") === contraseñaActual) {
       let nueva = prompt("Ingrese su nueva contraseña");
       setContraseña(nueva);
       alert(`Su nueva contraseña es: ${nueva}`);
     } else {
-      return alert("Contaseña Incorrecta");
+      return alert("Contraseña incorrecta");
     }
   }
 
@@ -36,6 +42,7 @@ export default function PanelControl({
     >
       <form className="flex flex-col ">
         <InputForm
+          saveData={saveData}
           precioMinimo={precioMinimo}
           setPrecioMinimo={setPrecioMinimo}
           htmlFor="min"
@@ -43,6 +50,7 @@ export default function PanelControl({
         />
 
         <InputForm
+          saveData={saveData}
           precioMaximo={precioMaximo}
           setPrecioMaximo={setPrecioMaximo}
           htmlFor="max"
@@ -50,6 +58,7 @@ export default function PanelControl({
         />
 
         <InputForm
+          saveData={saveData}
           tiempo={tiempo}
           setTiempo={setTiempo}
           htmlFor="time"
@@ -57,6 +66,7 @@ export default function PanelControl({
         />
 
         <InputForm
+          saveData={saveData}
           incrementarPrecio={incrementarPrecio}
           setIncrementarPrecio={setIncrementarPrecio}
           htmlFor="price"
@@ -72,13 +82,8 @@ export default function PanelControl({
       </h3>
 
       <div className="w-full flex justify-end gap-3 mt-14">
-        {/* <Button
-          icon="Cancelar"
-          setValidarContraseña={setValidarContraseña}
-          setContraseñaCorrecta={setContraseñaCorrecta}
-        /> */}
-
         <Button
+          saveData={saveData}
           icon="Aplicar"
           setValidarContraseña={setValidarContraseña}
           setContraseñaCorrecta={setContraseñaCorrecta}
